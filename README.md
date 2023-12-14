@@ -19,7 +19,8 @@ This is a simple fintech portal system that uses the data from Financial Modelin
 9. After that, we can run the migration
 > ./vendor/sail artisan migrate
 10. Now that the backend is set up. We can now begin setting up the front end by running
-> npm install \n
+> npm install
+
 > npm run dev
 
 And viola! We have set up our simple fintech portal. 
