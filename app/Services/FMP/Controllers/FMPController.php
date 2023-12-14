@@ -25,11 +25,10 @@ class FMPController extends Controller
 
     public function companyProfile(Request $request)
     {
-        $cacheKey = "profile_$request->keyword";
+        $cacheKey = "profile_$request->symbol";
         return Cache::remember($cacheKey, 1440, function () use ($request)
         {
             return ProcessExternalApiRequest::handle('GET', '/api/v3/profile/'.$request->symbol, [], [
-                'query' => $request->keyword,
                 'apikey' => config('fmp.api_key'),
             ]);
         });
@@ -37,11 +36,10 @@ class FMPController extends Controller
 
     public function companyQuote(Request $request)
     {
-        $cacheKey = "quote_$request->keyword";
+        $cacheKey = "quote_$request->symbol";
         return Cache::remember($cacheKey, 1440, function () use ($request)
         {
             return ProcessExternalApiRequest::handle('GET', '/api/v3/quote/'.$request->symbol, [], [
-                'query' => $request->keyword,
                 'apikey' => config('fmp.api_key'),
             ]);
         });
