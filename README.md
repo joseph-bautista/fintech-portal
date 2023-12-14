@@ -24,15 +24,6 @@ This is a simple fintech portal system that uses the data from Financial Modelin
 
 And viola! We have set up our simple fintech portal. 
 
-We can access the postman workspace here https://www.postman.com/lunar-star-596261/workspace/online-banking-system/overview choose local environment and play along the API Endpoints. 
-
-We can then proceed to setting up the UI of it in a separate repository. You can follow the steps here https://github.com/joseph-bautista/online_bank_ui 
-
-
-# The Database Diagram
-![alt text](https://github.com/joseph-bautista/online_bank/blob/master/online_banking.png?raw=true)
-
-
 # Technologies Used
 1. Laravel
 2. MySQL
