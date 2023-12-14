@@ -7,6 +7,7 @@ use App\Services\FMP\APIHandler\ProcessExternalApiRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
+use Inertia\Inertia;
 
 class FMPController extends Controller
 {
@@ -20,7 +21,6 @@ class FMPController extends Controller
                 'apikey' => config('fmp.api_key'),
             ]);
         });
-        
     }
 
     public function companyProfile(Request $request)

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Services\FMP\Controllers\FMPController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -25,6 +26,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/fmp/search', [FMPController::class, 'search'])->name('fmp.search');
+    Route::get('/fmp/company_profile', [FMPController::class, 'companyProfile'])->name('fmp.profile');
+    Route::get('/fmp/company_quote', [FMPController::class, 'companyQuote'])->name('fmp.quote');
 });
 
 require __DIR__.'/auth.php';

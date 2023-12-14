@@ -9,16 +9,13 @@ export default function Dashboard({ auth }) {
     const handleSearch = async () => {
         try 
         {
-            const response = await fetch(`/api/v1/fmp/search?keyword=${keyword}`, {
+            const response = await fetch(`/fmp/search?keyword=${keyword}`, {
                 method: 'GET',
-                headers: {
-                    'Authorization' : `Bearer ${auth.token}`,
-                    'Content-Type' : 'application/json',
-                },
+                
             });
 
             const data = await response.json();
-            console.log(data);
+            setSearchResults(data);
         }
         catch (error)
         {
@@ -40,17 +37,45 @@ export default function Dashboard({ auth }) {
                             <div className='mb-4'>
                                 <input 
                                     type="text" 
-                                    className='border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full'
-                                    placeholder="Search ticker..."
+                                    className='border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full mb-1'
+                                    placeholder="Search symbol..."
                                     value={keyword}
                                     onChange={(e) => setKeyword(e.target.value)}
                                 />
                                 <button
-                                    className='ml-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600'
+                                    className='ml-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 mb-2'
                                     onClick={handleSearch}
                                 >
                                     Search
                                 </button>
+                                <div>
+                                    {searchResults && searchResults.length > 0 ? (
+                                    <table className='table-auto border-separate border-spacing-2 border border-slate-500'>
+                                        <thead>
+                                            <tr>
+                                                <th className='border border-slate-600'>Symbol</th>
+                                                <th className='border border-slate-600'>Name</th>
+                                                <th className='border border-slate-600'>Currency</th>
+                                                <th className='border border-slate-600'>Exchange</th>
+                                            </tr>
+                                        </thead>
+                                        
+                                        <tbody>
+                                        {searchResults.map((result, index) => (
+                                            <tr key={index}>
+                                                <td className='border border-slate-700'>{result.symbol}</td>
+                                                <td className='border border-slate-700'>{result.name}</td>
+                                                <td className='border border-slate-700'>{result.currency}</td>
+                                                <td className='border border-slate-700'>{result.exchangeShortName}</td>
+                                            </tr>
+                                        ))}
+                                        </tbody>
+                                    </table>
+                                    ) : (
+                                        <p>No results found.</p>
+                                    )}
+                                </div>
+                                
                             </div>
                         </div>
                     </div>
